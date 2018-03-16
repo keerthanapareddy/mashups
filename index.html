@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width">
+		<title>spatialAI</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<h1>SPATIAL AI</h1>
+		</header>
+
+  <div class="searchlocation">
+		<form class = "fields"  >
+			Latitude:<br>
+			<input type="text" id="latitude" ><br>
+			Longitude:<br>
+		<input type="text" id="longitude" >
+		<br>
+		<br>
+		<input type="submit" name="submitbutton" value="SUBMIT" >
+			<!-- <input type="submit" name="submitbutton" value="SUBMIT" method="post" > -->
+	 </form>
+	</div>
+
+		<main>
+		</main>
+
+		<script src="jquery-2.1.1.js"></script>
+		<script src="scripts.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.fields').submit("submit",function(){
+        app.initialize();
+				console.log("print from form");
+		 });
+			});
+		</script>
+
+	</body>
+</html>
