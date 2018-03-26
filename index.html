@@ -12,7 +12,7 @@
 		</header>
 
   <div class="searchlocation">
-		<form class = "fields"  >
+		<form class = "fields" id = "fields"  >
 			Latitude:<br>
 			<input type="text" id="latitude" ><br>
 			Longitude:<br>
@@ -31,11 +31,10 @@
 		<script src="scripts.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('.fields').submit("submit",function(){
+			  console.log("document ready");
         app.initialize();
-				console.log("print from form");
-		 });
 			});
+
 		</script>
 
 	</body>
