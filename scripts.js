@@ -7,8 +7,9 @@ var app = {
      $('#searchlocation').submit(function(e){
       e.preventDefault();
       console.log("Yahaan!");
-      // app.geocodeAddress(geocoder, map);
-      // app.getspatialAIData(location);
+      app.initMap();
+      app.getGoogleMapAPI();
+
       e.preventDefault();
   });
 	},
@@ -78,6 +79,7 @@ var app = {
 
   //google maps
    initMap: function() {
+
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
       center: {lat: -34.397, lng: 150.644}
@@ -85,12 +87,13 @@ var app = {
     var geocoder = new google.maps.Geocoder();
 
     // document.getElementById('submit').addEventListener('click', function() {
-
+    app.geocodeAddress(geocoder, map);
     // });
   },
 
  geocodeAddress: function(geocoder, resultsMap) {
-    var address = document.getElementById('address').value;
+    // var address = document.getElementById('address').value;
+    var address = $("#address").val();
     geocoder.geocode({'address': address}, function(results, status) {
       if (status === 'OK') {
         resultsMap.setCenter(results[0].geometry.location);
@@ -102,5 +105,44 @@ var app = {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
+  },
+
+  getGoogleMapAPI : function(){
+    console.log("Get Google location");
+      var address = $("#address").val();
+    var mapURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address +'&key=';
+		var mapKey = 'AIzaSyDPWS54PNjzC-65SUDM5GsWOmdPKjy2nis';
+		var mapReqURL = mapURL + mapKey;
+		console.log(mapReqURL);
+
+    // $(document).ready(function() {
+    //  console.log("document 2 ready");
+    //ajax call here
+    $.ajax({
+      url: mapReqURL,
+      type: 'GET',
+      dataType: 'json',
+
+
+      check: console.log("ajax call"),
+      error: function(err){
+        console.log("Uh oh...");
+        console.log(err);
+      },
+
+      success: function(data){
+        console.log("success");
+        console.log(data);
+        // app.social_score = data.social_score.quarters;
+        // // for (var i = 0; i < app.social_score.length; i++){
+        // // 	app. getspatialAIData(app.social_score[i]);
+        // // }
+        // console.log(app.social_score);
+
+        // app.makeHTML();
+      }
+    });
+  // });
+
   }
 };
