@@ -4,34 +4,35 @@ var app = {
 	supported_market:{},
 
   initialize: function() {
-     $('#fields').submit(function(e){
+     $('#searchlocation').submit(function(e){
       e.preventDefault();
       console.log("Yahaan!");
-      app.getspatialAIData(location);
+      // app.geocodeAddress(geocoder, map);
+      // app.getspatialAIData(location);
       e.preventDefault();
   });
 	},
 
-	makeHTML: function(thething) {
+	makeHTML: function() {
 		var theHTML = '';
 		// for (var i = 0; i < app.social_score.quarters.length; i++){
-			// for (var j = 0; j < app.social_score.quarters.length; j++){
+			for (var j = 0; j < app.social_score[6].scores.length; j++){
       theHTML += "<div class='spatialAI'>";
-			// theHTML += "<h3>" + app.social_score.quarters[6] + "</h3>";
-      	theHTML += "<h3>" + app.location + "</h3>";
+			theHTML += "<h3>" + app.social_score[6].scores[j].category_name + "</h3>";
+      	// theHTML += "<h3>" + app.location.lat + "</h3>";
+        // theHTML += "<h3>" + app.location.lng + "</h3>";
       // theHTML += "<h3>" + app.social_score.quarters[6].scores[j].category_name+ "</h3>";
 			// theHTML += "<h3>" + app.location + "</h3>";
 
 			theHTML += "</div>";
-		// }
+		}
   // }
      $('main').html(theHTML);
-
-	},
-
+  },
 
 
-   getspatialAIData: function(thething) {
+
+   getspatialAIData: function(location) {
 		console.log("Get spatial Data");
     var latitude = $("#latitude").val();
     console.log(latitude);
@@ -62,12 +63,44 @@ var app = {
       success: function(data){
         console.log("success");
         console.log(data);
-        app.location = data.location;
-        console.log(app.location);
-        app.makeHTML(app.location);
+        app.social_score = data.social_score.quarters;
+        // for (var i = 0; i < app.social_score.length; i++){
+				// 	app. getspatialAIData(app.social_score[i]);
+				// }
+        console.log(app.social_score);
+
+        app.makeHTML();
       }
     });
   });
     // console.log(spatialReqURL);
-	}
+	},
+
+  //google maps
+   initMap: function() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: {lat: -34.397, lng: 150.644}
+    });
+    var geocoder = new google.maps.Geocoder();
+
+    // document.getElementById('submit').addEventListener('click', function() {
+
+    // });
+  },
+
+ geocodeAddress: function(geocoder, resultsMap) {
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === 'OK') {
+        resultsMap.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: resultsMap,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
 };

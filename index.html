@@ -11,7 +11,9 @@
 			<h1>SPATIAL AI</h1>
 		</header>
 
-  <div class="searchlocation">
+
+
+  <!-- <div class="searchlocation">
 		<form class = "fields" id = "fields"  >
 			Latitude:<br>
 			<input type="text" id="latitude" ><br>
@@ -21,11 +23,20 @@
 		<br>
 		<input type="submit" name="submitbutton" value="SUBMIT" >
 			<!-- <input type="submit" name="submitbutton" value="SUBMIT" method="post" > -->
-	 </form>
-	</div>
+	 <!-- </form>
+	</div> -->
 
-		<main>
-		</main>
+
+	<div class="floating-panel">
+		<form class = "searchlocation" id = "searchlocation" >
+     <input id="address" type="text" value="Sydney, NSW">
+     <input  type="submit" name="submitbutton" value="SUBMIT">
+	 </form>
+  </div>
+  <div id="map"></div>
+
+  <main>
+	</main>
 
 		<script src="jquery-2.1.1.js"></script>
 		<script src="scripts.js"></script>
@@ -34,8 +45,11 @@
 			  console.log("document ready");
         app.initialize();
 			});
-
 		</script>
+		<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_rGDV5C1UGmPNpCttsoT_VJDiDIZbyWE&callback=app.initMap">
+
+    </script>
 
 	</body>
 </html>
