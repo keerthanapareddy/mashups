@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width">
 		<title>spatialAI</title>
 		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<script src="https://d3js.org/d3.v5.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
@@ -27,18 +28,26 @@
 	 <!-- </form>
 	</div> -->
 
-<div class = "information">
-	<div class="floating-panel">
-		<form class = "searchlocation" id = "searchlocation" >
-     <input id="address" type="text" value="Sydney, NSW">
-     <input  id="submit" type="submit" name="submitbutton" value="SUBMIT">
-	 </form>
+<div class = "entirescreen">
+	<div class = "mapbox">
+	 <div id="map"></div>
   </div>
-	<div class=""id ="apiresults">
-		<p></p>
+	<div class = "rightinfo">
+	 <div class="floating-panel">
+		 <form class = "searchlocation" id = "searchlocation" >
+     <input id="address" type="text" value="Washington Square Park">
+     <input  id="submit" type="submit" name="submitbutton" value="SUBMIT">
+	  </form>
+   </div>
+	 <div class = "apicontainer" >
+	   <div id = "apiresults">
+		<!-- <p></p> -->
+	   </div>
 	</div>
 </div>
-  <div id="map"></div>
+
+</div>
+
 
   <main>
 	</main>
